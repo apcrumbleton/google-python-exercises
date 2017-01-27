@@ -75,10 +75,12 @@ def print_top(filename):
 # VALUE at that dict[key], thus sorting the dict keys by the VALUE to which
 # they point.
     for key in sorted(topdict, key=topdict.get, reverse = True):
-        print(key, topdict[key])
-        toplist[n] = (key, topdict[key])
+        #print(n, key)
+        toplist.insert(n, key )
         n += 1
-    print(toplist)
+    print('Top 20 most common words:')
+    for w in toplist[:20]:
+        print(w)
     sys.exit(0)
 ###
 
