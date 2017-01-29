@@ -1,4 +1,4 @@
-#!/usr/bin/python -tt
+#!/usr/bin/python3 -tt
 # Copyright 2010 Google Inc.
 # Licensed under the Apache License, Version 2.0
 # http://www.apache.org/licenses/LICENSE-2.0
@@ -54,17 +54,17 @@ def not_bad(s):
 #  a-front + b-front + a-back + b-back
 def front_back(a, b):
     if (len(a)%2) == 0:
-        a1 = a[0:len(a)/2]
-        a2 = a[len(a)/2:]
+        a1 = a[0:int(len(a)/2)]
+        a2 = a[int(len(a)/2):]
     else:
-        a1 = a[0:(len(a)/2)+1]
-        a2 = a[(len(a)/2)+1:]
+        a1 = a[0:int(len(a)/2)+1]
+        a2 = a[int(len(a)/2)+1:]
     if (len(b)%2) == 0:
-        b1 = b[0:len(b)/2]
-        b2 = b[len(b)/2:]
+        b1 = b[0:int(len(b)/2)]
+        b2 = b[int(len(b)/2):]
     else:
-        b1 = b[0:(len(b)/2)+1]
-        b2 = b[(len(b)/2)+1:]
+        b1 = b[0:int(len(b)/2)+1]
+        b2 = b[int(len(b)/2)+1:]
     return(a1+b1+a2+b2)
   # +++your code here+++
   #return
@@ -77,26 +77,26 @@ def test(got, expected):
     prefix = ' OK '
   else:
     prefix = '  X '
-  print '%s got: %s expected: %s' % (prefix, repr(got), repr(expected))
+  print(prefix, 'got:', repr(got), 'expected:', repr(expected))
 
 
 # main() calls the above functions with interesting inputs,
 # using the above test() to check if the result is correct or not.
 def main():
-  print 'verbing'
+  print('verbing')
   test(verbing('hail'), 'hailing')
   test(verbing('swiming'), 'swimingly')
   test(verbing('do'), 'do')
 
   print
-  print 'not_bad'
+  print('not_bad')
   test(not_bad('This movie is not so bad'), 'This movie is good')
   test(not_bad('This dinner is not that bad!'), 'This dinner is good!')
   test(not_bad('This tea is not hot'), 'This tea is not hot')
   test(not_bad("It's bad yet not"), "It's bad yet not")
 
   print
-  print 'front_back'
+  print('front_back')
   test(front_back('abcd', 'xy'), 'abxcdy')
   test(front_back('abcde', 'xyz'), 'abcxydez')
   test(front_back('Kitten', 'Donut'), 'KitDontenut')

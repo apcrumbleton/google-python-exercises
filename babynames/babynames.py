@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 # Copyright 2010 Google Inc.
 # Licensed under the Apache License, Version 2.0
 # http://www.apache.org/licenses/LICENSE-2.0
@@ -35,14 +35,22 @@ Suggested milestones for incremental development:
 """
 
 def extract_names(filename):
-  """
-  Given a file name for baby.html, returns a list starting with the year string
-  followed by the name-rank strings in alphabetical order.
-  ['2006', 'Aaliyah 91', Aaron 57', 'Abagail 895', ' ...]
-  """
-  # +++your code here+++
-  return
-
+    """
+      Given a file name for baby.html, returns a list starting with the year string
+      followed by the name-rank strings in alphabetical order.
+      ['2006', 'Aaliyah 91', Aaron 57', 'Abagail 895', ' ...]
+      """
+      # +++your code here+++
+    f = open(filename, 'r')
+    stream = f.read()
+    year = re.search(r'.*[Pp]opularity in (\d\d\d\d).*',stream)
+    #rank_name = re.search(r'.*<td>(\d+)</td><td>([A-Z]\w+)</td><td>([A-Z]\w+).*',stream)
+    rank_name = re.findall(r'.*<td>(\d+)</td><td>([A-Z]\w+)</td><td>([A-Z]\w+).*',stream)
+    #print(year.group(1), rank_name.group(2), rank_name.group(3), rank_name.group(1))
+    f.close()
+    for entry in rank_name:
+        print(year.group(1),'\t', entry[1],'\t', entry[2],'\t', entry[0])
+    return
 
 def main():
   # This command-line parsing code is provided.
@@ -51,7 +59,7 @@ def main():
   args = sys.argv[1:]
 
   if not args:
-    print 'usage: [--summaryfile] file [file ...]'
+    print('usage: [--summaryfile] file [file ...]')
     sys.exit(1)
 
   # Notice the summary flag and remove it from args if it is present.
@@ -61,6 +69,8 @@ def main():
     del args[0]
 
   # +++your code here+++
+  filename = sys.argv[1]
+  extract_names(filename)
   # For each filename, get the names, then either print the text output
   # or write it to a summary file
   
